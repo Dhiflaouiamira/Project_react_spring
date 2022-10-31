@@ -3,9 +3,9 @@ package com.tekup.AgenceImmobilier.repos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.tekup.AgenceImmobilier.model.Reclamation;
+import com.tekup.AgenceImmobilier.model.Role;
 
 @Repository
-public interface ReclamationRep extends JpaRepository<Reclamation, Long> {
+public interface RoleRepository extends JpaRepository<Role, Long> {
 
 }

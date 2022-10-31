@@ -1,21 +1,49 @@
 package com.tekup.AgenceImmobilier.model;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@Table(name= "T_Reservation")
 public class Reservation {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	
 	private int id;
-	private String status;
-	private long Montant;
-	private Date DateDebut;
-	private Date DateFin;
+	
+	@Column(name = "montant")
+	private double montant;
+	
+	@Column(name = "date_debut")
+	private Date dateDebut;
+	
+	@Column(name = "date_fin")
+	private Date dateFin;
+	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn( name = "id_user", referencedColumnName = "id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private User user;
+	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn( name = "id_bien_immobilier", referencedColumnName = "id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private BienImmobilier bienImmobilier;
 	
 	
 	public Reservation() {
@@ -24,13 +52,12 @@ public class Reservation {
 	}
 
 
-	public Reservation(int id, String status, long montant, Date dateDebut, Date dateFin) {
+	public Reservation(int id, double montant, Date dateDebut, Date dateFin) {
 		super();
 		this.id = id;
-		this.status = status;
-		Montant = montant;
-		DateDebut = dateDebut;
-		DateFin = dateFin;
+		this.montant = montant;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
 	}
 
 
@@ -44,53 +71,54 @@ public class Reservation {
 	}
 
 
-	public String getStatus() {
-		return status;
+	public double getMontant() {
+		return montant;
 	}
 
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-
-	public long getMontant() {
-		return Montant;
-	}
-
-
-	public void setMontant(long montant) {
-		Montant = montant;
+	public void setMontant(double montant) {
+		this.montant = montant;
 	}
 
 
 	public Date getDateDebut() {
-		return DateDebut;
+		return dateDebut;
 	}
 
 
 	public void setDateDebut(Date dateDebut) {
-		DateDebut = dateDebut;
+		this.dateDebut = dateDebut;
 	}
 
 
 	public Date getDateFin() {
-		return DateFin;
+		return dateFin;
 	}
 
 
 	public void setDateFin(Date dateFin) {
-		DateFin = dateFin;
+		this.dateFin = dateFin;
 	}
 
 
-	@Override
-	public String toString() {
-		return "Reservation [id=" + id + ", status=" + status + ", Montant=" + Montant + ", DateDebut=" + DateDebut
-				+ ", DateFin=" + DateFin + "]";
+	public User getUser() {
+		return user;
 	}
-	
-	
-	
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public BienImmobilier getBienImmobilier() {
+		return bienImmobilier;
+	}
+
+
+	public void setBienImmobilier(BienImmobilier bienImmobilier) {
+		this.bienImmobilier = bienImmobilier;
+	}
+
 	
 }

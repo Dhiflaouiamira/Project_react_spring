@@ -1,120 +1,144 @@
 package com.tekup.AgenceImmobilier.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@Table(name = "T_Bien_Immobilier")
 public class BienImmobilier {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long Id;
-	private long nom;
-	private String nbPieces;
-	private long localication;
-	private long prix;
-	private long photos;
-	private long contact;
-	private long description;
-	private long type;
+    private long id;
+	
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "nb_pieces")
+	private int nbPieces;
+	
+	@Column(name = "address")
+	private String address;
+	
+	@Column(name = "prix")
+	private double prix;
+	
+	@Column(name = "description")
+	private String description;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="id_type_immobilier", referencedColumnName = "id")
+	private TypeImmobilier typeImmobilier;
+	
+	@OneToMany(mappedBy= "bienImmobilier")
+	private List<Reservation> reservations;
+	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn( name = "id_user", referencedColumnName = "id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private User user;
+
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn( name = "id_status", referencedColumnName = "id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Status status;
 	
 	public BienImmobilier() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
-	
-	
-	public BienImmobilier(long id, long nom, String nbPieces, long localication, long prix, long photos, long contact,
-			long description, long type) {
+
+	public BienImmobilier(long id, String name, int nbPieces, String address, double prix, String description) {
 		super();
-		Id = id;
-		this.nom = nom;
+		this.id = id;
+		this.name = name;
 		this.nbPieces = nbPieces;
-		this.localication = localication;
+		this.address = address;
 		this.prix = prix;
-		this.photos = photos;
-		this.contact = contact;
 		this.description = description;
-		this.type = type;
 	}
-
-
-
-
 
 	public long getId() {
-		return Id;
+		return id;
 	}
+
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
-	public long getNom() {
-		return nom;
+
+	public String getName() {
+		return name;
 	}
-	public void setNom(long nom) {
-		this.nom = nom;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getNbPieces() {
+
+	public int getNbPieces() {
 		return nbPieces;
 	}
-	public void setNbPieces(String nbPieces) {
+
+	public void setNbPieces(int nbPieces) {
 		this.nbPieces = nbPieces;
 	}
-	public long getLocalication() {
-		return localication;
+
+	public String getAddress() {
+		return address;
 	}
-	public void setLocalication(long localication) {
-		this.localication = localication;
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public long getPrix() {
+
+	public double getPrix() {
 		return prix;
 	}
-	public void setPrix(long prix) {
+
+	public void setPrix(double prix) {
 		this.prix = prix;
 	}
-	public long getPhotos() {
-		return photos;
-	}
-	public void setPhotos(long photos) {
-		this.photos = photos;
-	}
-	public long getContact() {
-		return contact;
-	}
-	public void setContact(long contact) {
-		this.contact = contact;
-	}
-	public long getDescription() {
+
+	public String getDescription() {
 		return description;
 	}
-	public void setDescription(long description) {
+
+	public void setDescription(String description) {
 		this.description = description;
 	}
-	public long getType() {
-		return type;
-	}
-	public void setType(long type) {
-		this.type = type;
+
+	public Status getStatus() {
+		return status;
 	}
 
-
-
-
-
-	@Override
-	public String toString() {
-		return "BienImmobilier [Id=" + Id + ", nom=" + nom + ", nbPieces=" + nbPieces + ", localication=" + localication
-				+ ", prix=" + prix + ", photos=" + photos + ", contact=" + contact + ", description=" + description
-				+ ", type=" + type + "]";
+	public void setStatus(Status status) {
+		this.status = status;
 	}
-	
-	
-	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	
 
 }

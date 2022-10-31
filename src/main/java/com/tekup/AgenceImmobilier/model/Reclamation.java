@@ -1,29 +1,48 @@
 
 package com.tekup.AgenceImmobilier.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-
-
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 
 @Entity
+@Table(name = "T_Reclamation")
 public class Reclamation {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	
 	private long id;
-	private String Description;
-	private String Etat;
-	private String Type;
 	
+	@Column(name = "description")
+	private String description;
 	
-	@ManyToOne
-	private Client client;
+	@Column(name = "type")
+	private String type;
+	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn( name = "id_user", referencedColumnName = "id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private User user;
+	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn( name = "id_status", referencedColumnName = "id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Status status;
 
 
 	public Reclamation() {
@@ -32,24 +51,11 @@ public class Reclamation {
 	}
 
 
-	public Reclamation(long id, String description, String etat, String type) {
+	public Reclamation(long id, String description, String type) {
 		super();
 		this.id = id;
-		Description = description;
-		Etat = etat;
-		Type = type;
-
-	}
-
-	
-
-	public Client getreclamation() {
-		return client;
-	}
-
-
-	public void setClient(Client client) {
-		this.client = client;
+		this.description = description;
+		this.type = type;
 	}
 
 
@@ -64,39 +70,47 @@ public class Reclamation {
 
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 
 	public void setDescription(String description) {
-		Description = description;
-	}
-
-
-	public String getEtat() {
-		return Etat;
-	}
-
-
-	public void setEtat(String etat) {
-		Etat = etat;
+		this.description = description;
 	}
 
 
 	public String getType() {
-		return Type;
+		return type;
 	}
 
 
 	public void setType(String type) {
-		Type = type;
+		this.type = type;
 	}
 
 
-	@Override
-	public String toString() {
-		return "Reclamation [id=" + id + ", Description=" + Description + ", Etat=" + Etat + ", Type=" + Type + "]";
+	public User getUser() {
+		return user;
 	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public Status getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	
+
+	
 	
 	
 }

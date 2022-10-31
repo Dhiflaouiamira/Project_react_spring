@@ -15,8 +15,7 @@ import java.util.List;
 @Entity
 public class Client {
 
-	@OneToMany (mappedBy= "client")
-	private List<Reclamation> reclamations;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -27,10 +26,7 @@ public class Client {
     private String email ;
     private String sexe ;
     private int tel ;
-    
-    
 
- 
     
    
     public Client() {
