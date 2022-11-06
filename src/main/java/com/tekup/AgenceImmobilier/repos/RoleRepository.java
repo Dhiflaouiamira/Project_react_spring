@@ -8,4 +8,5 @@ import com.tekup.AgenceImmobilier.model.Role;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
+	Role findRoleByLibelle(String libelle);
 }

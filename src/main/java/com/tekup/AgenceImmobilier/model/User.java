@@ -17,9 +17,10 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 @Entity
 @Table(name = "T_User")
-public class User implements UserDetails {
+public class User  implements UserDetails{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -131,6 +132,16 @@ public class User implements UserDetails {
 
 	public void setCin(int cin) {
 		this.cin = cin;
+	}
+	
+	
+
+	public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
 	}
 
 	public Role getRole() {
