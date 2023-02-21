@@ -20,7 +20,7 @@ public class ReclamationServicesImpl implements ReclamationServices{
 	}
 
 	@Override
-	public void deleteBienReclamation(Reclamation R) {
+	public void deleteReclamation(Reclamation R) {
 		reclamationRepository.delete(R);
 		
 	}

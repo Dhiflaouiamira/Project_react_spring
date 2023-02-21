@@ -7,7 +7,7 @@ import com.tekup.AgenceImmobilier.model.Reservation;
 public interface ReservationServices {
 
 	Reservation saveReservation(Reservation R);
-	void deleteBienReservation(Reservation R);
+	void deleteReservation(Reservation R);
 	Reservation getReservation(Long id);
 	List<Reservation> getAllReservation();
 }

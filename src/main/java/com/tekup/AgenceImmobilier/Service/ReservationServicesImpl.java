@@ -20,7 +20,7 @@ public class ReservationServicesImpl implements ReservationServices {
 	}
 
 	@Override
-	public void deleteBienReservation(Reservation R) {
+	public void deleteReservation(Reservation R) {
 		ReservationRepository.delete(R);
 	}
 
