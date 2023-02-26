@@ -8,8 +8,8 @@ import com.tekup.AgenceImmobilier.model.TypeImmobilier;
 public interface TypeImmobilierServices {
 
 
-	TypeImmobilier savev(TypeImmobilier T);
-	void deleteSTypeImmobilier(TypeImmobilier T);
+	TypeImmobilier saveTypeImmobilier(TypeImmobilier T);
+	void deleteTypeImmobilier(TypeImmobilier T);
 	TypeImmobilier getTypeImmobilier(Long id);
-	List<TypeImmobilier> getAllV();
+	List<TypeImmobilier> getAllTypeImmobilier();
 }

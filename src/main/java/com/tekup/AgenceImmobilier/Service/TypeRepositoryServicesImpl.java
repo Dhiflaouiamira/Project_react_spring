@@ -15,13 +15,13 @@ public class TypeRepositoryServicesImpl implements TypeImmobilierServices {
 @Autowired TypeImmobilierRepository typeImmobilierRepository;
 
 @Override
-public TypeImmobilier savev(TypeImmobilier T) {
+public TypeImmobilier saveTypeImmobilier(TypeImmobilier T) {
 	
 	return typeImmobilierRepository.save(T);
 }
 
 @Override
-public void deleteSTypeImmobilier(TypeImmobilier T) {
+public void deleteTypeImmobilier(TypeImmobilier T) {
 	 typeImmobilierRepository.delete(T);
 }
 
@@ -32,7 +32,7 @@ public TypeImmobilier getTypeImmobilier(Long id) {
 }
 
 @Override
-public List<TypeImmobilier> getAllV() {
+public List<TypeImmobilier> getAllTypeImmobilier() {
 	
 	return typeImmobilierRepository.findAll();
 }
