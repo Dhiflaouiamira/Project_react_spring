@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.lang.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -42,20 +43,20 @@ public class BienImmobilier {
 	
 	@Column(name = "description")
 	private String description;
-	
+	@Nullable
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="id_type_immobilier", referencedColumnName = "id")
 	private TypeImmobilier typeImmobilier;
 	
 	@OneToMany(mappedBy= "bienImmobilier")
 	private List<Reservation> reservations;
-	
+	@Nullable
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn( name = "id_user", referencedColumnName = "id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User user;
-
+	@Nullable
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn( name = "id_status", referencedColumnName = "id")
@@ -66,7 +67,10 @@ public class BienImmobilier {
 		super();
 	}
 
-	public BienImmobilier(long id, String name, int nbPieces, String address, double prix, String description) {
+	
+
+	public BienImmobilier(long id, String name, int nbPieces, String address, double prix, String description,
+			TypeImmobilier typeImmobilier, List<Reservation> reservations, User user, Status status) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -74,7 +78,13 @@ public class BienImmobilier {
 		this.address = address;
 		this.prix = prix;
 		this.description = description;
+		this.typeImmobilier = typeImmobilier;
+		this.reservations = reservations;
+		this.user = user;
+		this.status = status;
 	}
+
+
 
 	public long getId() {
 		return id;
