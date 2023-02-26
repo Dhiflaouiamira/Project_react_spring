@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tekup.AgenceImmobilier.Service.BienImmobilierServices;
 import com.tekup.AgenceImmobilier.model.BienImmobilier;
 
-
 @RestController
 @RequestMapping({"/api/bienImmobilier"})
 public class BienImmobilierController {
@@ -21,7 +20,6 @@ public class BienImmobilierController {
 	
 	@Autowired
 	private BienImmobilierServices bienImmobilierServices;
-	
 	
 	@GetMapping("/findAll")
 	public List<BienImmobilier> getALLBienImmobilier(){
