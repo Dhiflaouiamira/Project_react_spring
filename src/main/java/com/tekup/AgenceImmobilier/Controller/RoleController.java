@@ -20,6 +20,7 @@ import com.tekup.AgenceImmobilier.model.Role;
 @RequestMapping({"/api/role"})
 
 public class RoleController {
+	
 	@Autowired
 	private RoleServices roleServices;
 	

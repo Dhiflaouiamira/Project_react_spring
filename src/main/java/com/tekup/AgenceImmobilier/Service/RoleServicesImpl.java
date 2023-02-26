@@ -3,11 +3,12 @@ package com.tekup.AgenceImmobilier.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.tekup.AgenceImmobilier.model.Role;
 import com.tekup.AgenceImmobilier.repos.RoleRepository;
 
-
+@Service
 public class RoleServicesImpl implements RoleServices {
 
 	

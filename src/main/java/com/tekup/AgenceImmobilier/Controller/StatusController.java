@@ -20,7 +20,7 @@ import com.tekup.AgenceImmobilier.model.Status;
 
 
 @RestController
-@RequestMapping({"/api/role"})
+@RequestMapping({"/api/status"})
 
 public class StatusController {
 

@@ -17,7 +17,9 @@ import com.tekup.AgenceImmobilier.model.TypeImmobilier;
 
 
 @RestController
-@RequestMapping({"/api/typeImmobilier"})
+
+@RequestMapping({"/api/TypeImmobilier"})
+
 
  public class TypeImmobilierController {
 
